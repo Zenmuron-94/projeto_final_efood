@@ -1,8 +1,5 @@
-//import { Link } from 'react-router-dom'
-
 import { useState } from 'react'
 
-import imgPizza from '../../assets/images/prato.png'
 import fechar from '../../assets/images/close.png'
 
 import {
@@ -19,17 +16,26 @@ import {
 } from './styles'
 
 type Props = {
-  image: string
-  title: string
-  description: string
-  button: string
+  id: number
+  foto: string
+  nome: string
+  descricao: string
+  porcao: string
+  preco: number
 }
 
 type ModalState = {
   isVisible: boolean
 }
 
-const PratosRestaurante = ({ image, title, description, button }: Props) => {
+const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
+const PratosRestaurante = ({ foto, nome, descricao, porcao, preco }: Props) => {
   const [modal, setModal] = useState<ModalState>({
     isVisible: false
   })
@@ -40,14 +46,21 @@ const PratosRestaurante = ({ image, title, description, button }: Props) => {
     })
   }
 
+  const getDescricao = (descricao: string) => {
+    if (descricao.length > 120) {
+      return descricao.slice(0, 117) + '...'
+    }
+    return descricao
+  }
+
   return (
     <Card>
-      <Imagem src={image} alt={title} />
+      <Imagem src={foto} alt={nome} />
       <CardContainer>
         <TituloContainer>
-          <Titulo>{title}</Titulo>
+          <Titulo>{nome}</Titulo>
         </TituloContainer>
-        <Descricao>{description}</Descricao>
+        <Descricao>{getDescricao(descricao)}</Descricao>
         <BotaoAdicionar
           onClick={() => {
             setModal({
@@ -55,7 +68,7 @@ const PratosRestaurante = ({ image, title, description, button }: Props) => {
             })
           }}
         >
-          <a>{button}</a>
+          <a>Adicionar ao carrinho</a>
         </BotaoAdicionar>
         <Modal className={modal.isVisible ? 'visivel' : ''}>
           <ModalContent className="container">
@@ -68,7 +81,7 @@ const PratosRestaurante = ({ image, title, description, button }: Props) => {
             />
             <div>
               <img
-                src={imgPizza}
+                src={foto}
                 alt="Ícone de fechar"
                 onClick={() => {
                   closeModal()
@@ -76,21 +89,12 @@ const PratosRestaurante = ({ image, title, description, button }: Props) => {
               />
             </div>
             <InfosContainer>
-              <h4>Pizza Marguerita</h4>
-              <p>
-                A pizza Margherita é uma pizza clássica da culinária italiana,
-                reconhecida por sua simplicidade e sabor inigualável. Ela é
-                feita com uma base de massa fina e crocante, coberta com molho
-                de tomate fresco, queijo mussarela de alta qualidade, manjericão
-                fresco e azeite de oliva extra-virgem. A combinação de sabores é
-                perfeita, com o molho de tomate suculento e ligeiramente ácido,
-                o queijo derretido e cremoso e as folhas de manjericão frescas,
-                que adicionam um toque de sabor herbáceo. É uma pizza simples,
-                mas deliciosa, que agrada a todos os paladares e é uma ótima
-                opção para qualquer ocasião. <br /> <br /> Serve: de 2 a 3
-                pessoas
-              </p>
-              <BotaoAdicionar>Adicionar ao carrinho - R$ 60,90</BotaoAdicionar>
+              <h4>{nome}</h4>
+              <p>{descricao}</p>
+              <p>{porcao}</p>
+              <BotaoAdicionar>
+                Adicionar ao carrinho - {formataPreco(preco)}
+              </BotaoAdicionar>
             </InfosContainer>
           </ModalContent>
           <div

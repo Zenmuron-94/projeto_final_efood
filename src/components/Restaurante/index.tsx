@@ -16,6 +16,7 @@ import {
 } from './styles'
 
 type Props = {
+  id: number | undefined
   image: string
   title: string
   number: number
@@ -26,6 +27,7 @@ type Props = {
 }
 
 const Restaurante = ({
+  id,
   image,
   title,
   number,
@@ -36,10 +38,10 @@ const Restaurante = ({
   <Card>
     <img src={image} alt={title} />
     <Infos>
-      <TagContainer>{tipo}</TagContainer>
       {destacado === true ? (
         <TagContainer>Destaque da semana</TagContainer>
       ) : null}
+      <TagContainer>{tipo}</TagContainer>
     </Infos>
     <CardContainer>
       <TituloContainer>
@@ -53,7 +55,7 @@ const Restaurante = ({
       <SaibaMais>
         <Link
           style={{ textDecoration: 'none', color: '#FFEBD9' }}
-          to="/categories"
+          to={`cardapio/${id}`}
         >
           Saiba Mais
         </Link>
