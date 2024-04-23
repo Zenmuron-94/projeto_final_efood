@@ -1,12 +1,11 @@
+import { useEffect, useState } from 'react'
+
 import Header from '../../components/Header'
 import ListaRestaurantes from '../../components/ListaRestaurantes'
 //import ModeloRestaurante from '../../models/Restaurante'
-
 //import prato1 from '../../assets/images/imagem.png'
 //import prato2 from '../../assets/images/image1.png'
 //import estrela from '../../assets/images/estrela.png'
-
-import { useEffect, useState } from 'react'
 
 // const comercios: ModeloRestaurante[] = [
 //   {
