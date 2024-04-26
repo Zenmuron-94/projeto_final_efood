@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
-import { TagContainer } from '../Tag/styles'
 
 import lixeira from '../../assets/images/lixeira.png'
 
@@ -28,46 +27,57 @@ export const CartContainer = styled.div`
 `
 
 export const Sidebar = styled.aside`
-  background-color: ${cores.rose};
-  z-index: 1;
-  padding: 40px 16px 0;
   max-width: 360px;
+  padding: 32px 8px;
   width: 100%;
+  z-index: 1;
+  background-color: ${cores.rose};
 `
 
 export const CartItem = styled.li`
-  display: flex;
-  background-color: ${cores.beige};
-  padding: 8px;
   position: relative;
+  display: flex;
+  color: ${cores.rose};
+  background-color: ${cores.beige};
+  width: 344px;
+  height: 100px;
+  padding: 8px;
   margin-bottom: 16px;
+  padding-bottom: 12px;
+  gap: 8px;
+
   img {
-    height: 80px;
+    display: block;
     width: 80px;
+    height: 80px;
     object-fit: cover;
-    margin-right: 24px;
   }
+
   h3 {
-    color: ${cores.rose};
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+    font-weight: 900;
+    font-size: 18px;
   }
-  ${TagContainer} {
-    margin: 8px 8px 16px 0;
+
+  span {
+    margin-bottom: 8px;
+    font-weight: 400;
+    font-size: 14px;
   }
+
   button {
-    background-image: url(${lixeira});
+    position: absolute;
+    right: 16px;
+    top: 70px;
     width: 16px;
     height: 16px;
-    border: none;
-    background-color: transparent;
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
     cursor: pointer;
+    border: none;
+    background-image: url(${lixeira});
+    background-color: transparent;
   }
 `
+
 export const ValorTotal = styled.div`
   margin: 40px 0 16px;
   color: ${cores.beige};

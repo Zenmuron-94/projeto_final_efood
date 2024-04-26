@@ -43,7 +43,7 @@ const Cart = () => {
           {items.map((item) => (
             <CartItem key={item.id}>
               <img src={item.foto} alt={item.nome} />
-              <div>
+              <div className="item-content">
                 <h3>{item.nome}</h3>
                 <span>{formataPreco(item.preco)}</span>
               </div>
