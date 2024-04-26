@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import bannerImg from '../../assets/images/BannerImgHome.png'
+import { cores } from '../../styles'
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -19,4 +20,11 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: 1024px;
+
+  button {
+    border: none;
+    background: transparent;
+    color: ${cores.rose};
+    cursor: pointer;
+  }
 `
