@@ -1,6 +1,10 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 import fechar from '../../assets/images/close.png'
+
+//import { Restaurant } from '../../pages/Home'
+import { add, open } from '../../store/reducers/cart'
 
 import {
   Imagem,
@@ -28,7 +32,7 @@ type ModalState = {
   isVisible: boolean
 }
 
-const formataPreco = (preco = 0) => {
+export const formataPreco = (preco = 0) => {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL'
@@ -51,6 +55,11 @@ const PratosRestaurante = ({ foto, nome, descricao, porcao, preco }: Props) => {
       return descricao.slice(0, 117) + '...'
     }
     return descricao
+  }
+
+  const dispatch = useDispatch()
+  const addToCart = () => {
+    dispatch(open())
   }
 
   return (
@@ -92,7 +101,7 @@ const PratosRestaurante = ({ foto, nome, descricao, porcao, preco }: Props) => {
               <h4>{nome}</h4>
               <p>{descricao}</p>
               <p>{porcao}</p>
-              <BotaoAdicionar>
+              <BotaoAdicionar onClick={addToCart}>
                 Adicionar ao carrinho - {formataPreco(preco)}
               </BotaoAdicionar>
             </InfosContainer>
