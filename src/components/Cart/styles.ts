@@ -54,6 +54,7 @@ export const CartItem = styled.li`
   }
 
   h3 {
+    margin-top: 0;
     margin-bottom: 12px;
     font-weight: 900;
     font-size: 18px;
