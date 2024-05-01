@@ -16,7 +16,8 @@ import {
   ButtonContinuar
 } from './styles'
 
-import { Prato } from '../../pages/Categories'
+//import { Prato } from '../../pages/Categories'
+import { getTotalPrice } from '../../utils'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -29,15 +30,6 @@ const Cart = () => {
     dispatch(close())
   }
 
-  const getTotalPrice = (items: Prato[]) => {
-    return items.reduce((acumulador, valorAtual) => {
-      if (valorAtual.preco) {
-        return (acumulador += valorAtual.preco)
-      }
-      return 0
-    }, 0)
-  }
-
   const removeItem = (id: number) => {
     dispatch(remove(id))
   }
@@ -46,7 +38,7 @@ const Cart = () => {
     <CartContainer className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closeCart} />
       <Sidebar>
-        {!payment ? (
+        {!payment && items.length > 0 ? (
           <>
             <ul>
               {items.map((item) => (
@@ -76,7 +68,7 @@ const Cart = () => {
             </ButtonContinuar>
           </>
         ) : (
-          <Checkout setPayment={setPayment} />
+          <Checkout setPayment={setPayment}></Checkout>
         )}
       </Sidebar>
     </CartContainer>
