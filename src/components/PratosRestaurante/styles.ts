@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const Imagem = styled.img`
   width: 100%;
@@ -12,6 +12,10 @@ export const Imagem = styled.img`
 export const Card = styled.div`
   position: relative;
   overflow: auto;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 20px;
+  }
 `
 
 export const CardContainer = styled.div`
@@ -99,6 +103,10 @@ export const Modal = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.73);
+
+    @media (max-width: ${breakpoints.tablet}) {
+      height: 105vh;
+    }
   }
 `
 
@@ -121,7 +129,14 @@ export const ModalContent = styled.div`
     width: 280px;
     object-fit: cover;
     margin: 0 24px 0 0;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      margin: 0 0 16px;
+      height: 230px;
+      width: 100%;
+    }
   }
+
   > img {
     width: 16px;
     height: 16px;
@@ -130,6 +145,14 @@ export const ModalContent = styled.div`
     right: 10px;
     cursor: pointer;
     margin: 0;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    max-width: 335px;
+    width: 100%;
+    max-height: none;
+    height: auto;
+    flex-direction: column;
   }
 `
 export const InfosContainer = styled.div`

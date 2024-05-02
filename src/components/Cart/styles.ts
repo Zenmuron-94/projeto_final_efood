@@ -32,6 +32,13 @@ export const Sidebar = styled.aside`
   width: 100%;
   z-index: 1;
   background-color: ${cores.rose};
+
+  .empty-text {
+    font-size: 14px;
+    line-height: 22px;
+    color: ${cores.white2};
+    text-align: center;
+  }
 `
 
 export const CartItem = styled.li`
